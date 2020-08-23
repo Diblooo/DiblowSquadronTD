@@ -24,6 +24,14 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("Room for " + PhotonNetwork.CurrentRoom.PlayerCount);
     }
 
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        
+        if(PhotonNetwork.IsConnected)
+            LeaveRoom();
+    }
+
     #region Photon Callbacks
 
     public override void OnLeftRoom()
